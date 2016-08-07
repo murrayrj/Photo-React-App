@@ -1,20 +1,16 @@
 import React from "react";
+import { Link } from 'react-router';
 
-class PhotoList extends React.Component {
-    constructor (props) {
-        super(props);
+const PhotoList = (props) => (
+    <ul>
+    {
+        props.photos.map(photo => (
+            <Link to={'/photos/' + photo.id} key={photo.id}>
+                <img src={photo.thumbnailUrl} />
+            </Link>
+        ))
     }
-    
-    render() {
-        let photoItems = this.props.photos.map(photo => (
-            <img src={photo.thumbnailUrl} key={photo.id}/>
-        ));
-        return (
-            <ul>
-                {photoItems}
-            </ul>
-        );
-    }
-}
+    </ul>
+)
 
 export default PhotoList;
