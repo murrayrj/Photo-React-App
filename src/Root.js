@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Router, Route, IndexRoute, hashHistory } from 'react-router';
-import Routes from 'config/Routes';
+import Routes from './config/Routes';
 
 const Root = () => (
   <Router history={ hashHistory }>
