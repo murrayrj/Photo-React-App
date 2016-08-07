@@ -4,8 +4,9 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import Routes from './config/Routes';
 import reducers from './reducers/';
+import configureStore from './store/configStore';
 
-let store = createStore(reducers)
+const store = configureStore()
 
 const Root = () => (
   <Provider store={store}>

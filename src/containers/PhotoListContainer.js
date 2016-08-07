@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PhotoList from "../components/PhotoList";
 import * as actions from '../actions/Photos';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+import fetchPhotos from '../api/Photos'
 import es6promise from 'es6-promise';
 import 'isomorphic-fetch';
 es6promise.polyfill();
@@ -12,18 +13,12 @@ class PhotoListContainer extends Component {
       super(props);
   }
   componentDidMount() {
-    this.fetchPhotos(this.props.params.photos);
-  }
-
-  fetchPhotos() {
-    fetch('http://jsonplaceholder.typicode.com/photos/', {
-        method: 'get'
-    }).then(response => response.json()
-    ).then(data => {
+    fetchPhotos()
+      .then(response => response.json())
+      .then(data => {
         this.props.receivePhotos(data.slice(0, 50))
-    }).catch((err)=> {
-        console.log(err);
-    });
+      })
+      .catch(console.log);
   }
 
   render() {
